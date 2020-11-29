@@ -9,5 +9,4 @@ public class mainCandidato {
 		CandidatoGUI logi = new CandidatoGUI();
 
 	}
-
 }

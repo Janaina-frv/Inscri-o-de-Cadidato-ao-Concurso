@@ -3,6 +3,7 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import controller.controllerCandidato;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Font;
@@ -12,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
-
 
 public class CandidatoGUI extends JFrame {
 
@@ -39,7 +39,7 @@ public class CandidatoGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblInscricaoDeCandidato = new JLabel("INSCRICAO DE CANDIDATO");
+		JLabel lblInscricaoDeCandidato = new JLabel("INSCRIÇÃO DE CANDIDATO");
 		lblInscricaoDeCandidato.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblInscricaoDeCandidato.setBounds(52, 16, 315, 21);
 		contentPane.add(lblInscricaoDeCandidato);
@@ -105,7 +105,8 @@ public class CandidatoGUI extends JFrame {
 		public void limpar() {
 			textNome.setText("");
 			textCpf.setText("");			
-		 	rdbtn1.setSelected(true);		}
+		 	rdbtn1.setSelected(true);		
+		 }
 		
 		public class Handler implements ActionListener{
 
@@ -132,14 +133,19 @@ public class CandidatoGUI extends JFrame {
 							JOptionPane.showMessageDialog(null, "Favor preencher todos os campos!", "ATENÇÃO!!", 2, null);
 						}
 						else {
+							
+							controllerCandidato ca = new controllerCandidato();
+							
+							if(ca.cadastrar(nome, cpf, cargo)==1) {
 								JOptionPane.showMessageDialog(null, "Dados cadastrados com sucesso!", "SUCESSO!!", 1, null);
 								limpar();
-
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "Não foi possível cadastrar!", "ATENÇÃO!!", 2, null);
+							}
 						}
 					}
 				}
-				
 			}
-			
 		}
 }
